@@ -1,0 +1,336 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-display: 'Archivo Black', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-heading: 'Archivo Black', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  --color-swap-bg: #FFF6FA;
+  --color-swap-surface: #FFFFFF;
+  --color-swap-primary: #3C1F5D;
+  --color-swap-primary-hover: #2F1749;
+  --color-swap-pink: #FAA4C7;
+  --color-swap-pink-light: #FACFDE;
+  --color-swap-pink-deep: color-mix(in srgb, var(--color-swap-pink) 72%, var(--color-swap-primary) 28%);
+  --color-swap-pink-blush: #FCE8F2;
+  --color-swap-pink-subtle: #FFF1F7;
+  --color-swap-lilac: #C29CE7;
+  --color-swap-lilac-light: #EFE4FB;
+  --color-swap-lilac-border: #B48BD2;
+  --color-swap-lilac-deep: #B48BD2;
+  --color-swap-violet: color-mix(in srgb, var(--color-swap-lilac) 65%, var(--color-swap-primary) 35%);
+  --color-swap-violet-deep: color-mix(in srgb, var(--color-swap-violet) 70%, var(--color-swap-primary) 30%);
+  --color-swap-cream: #FCF3ED;
+  --color-swap-text: #1E1028;
+  --color-swap-text-muted: #563E63;
+  --color-swap-border: #EEDBEB;
+  --color-swap-border-light: #FBF0F7;
+
+  --shadow-nb: 6px 6px 0 0 var(--color-swap-text);
+  --shadow-nb-sm: 3px 3px 0 0 var(--color-swap-text);
+  --shadow-nb-lg: 8px 8px 0 0 var(--color-swap-text);
+
+  --radius-card-sm: 16px;
+  --radius-card: 20px;
+  --radius-card-lg: 24px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+:root {
+  color-scheme: light;
+  font-family: var(--font-body);
+  background-color: var(--color-swap-bg);
+  color: var(--color-swap-text);
+  overflow-x: hidden;
+  --swap-spotlight-glow: color-mix(in srgb, var(--color-swap-lilac) 24%, transparent);
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background-color: var(--color-swap-bg);
+  color: var(--color-swap-text);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: -0.025em;
+  line-height: 0.95;
+}
+
+.font-display {
+  font-family: var(--font-display) !important;
+}
+
+/* Neo-brutalist shadow utilities using dark text token (var(--color-swap-text)) */
+.shadow-nb {
+  box-shadow: 6px 6px 0 0 var(--color-swap-text);
+}
+
+.shadow-nb-sm {
+  box-shadow: 3px 3px 0 0 var(--color-swap-text);
+}
+
+.shadow-nb-lg {
+  box-shadow: 8px 8px 0 0 var(--color-swap-text);
+}
+
+/* Outlined headline for hero: transparent fill with text-stroke in text token, solid fallback */
+.headline-outlined {
+  color: var(--color-swap-text);
+}
+
+@supports ((-webkit-text-stroke: 2px black) or (text-stroke: 2px black)) {
+  .headline-outlined {
+    color: transparent;
+    -webkit-text-stroke: 3px var(--color-swap-text);
+    paint-order: stroke fill;
+  }
+  @media (min-width: 768px) {
+    .headline-outlined {
+      -webkit-text-stroke: 4px var(--color-swap-text);
+    }
+  }
+}
+
+/* Neo-brutalist button interactions */
+.btn-nb {
+  border: 2px solid var(--color-swap-text);
+  box-shadow: 6px 6px 0 0 var(--color-swap-text);
+  border-radius: 0.375rem;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.btn-nb:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 8px 8px 0 0 var(--color-swap-text);
+}
+
+.btn-nb:active {
+  transform: translate(0, 0);
+  box-shadow: 0 0 0 0 var(--color-swap-text);
+}
+
+.btn-nb-sm {
+  border: 2px solid var(--color-swap-text);
+  box-shadow: 3px 3px 0 0 var(--color-swap-text);
+  border-radius: 0.375rem;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.btn-nb-sm:hover {
+  transform: translate(-1.5px, -1.5px);
+  box-shadow: 5px 5px 0 0 var(--color-swap-text);
+}
+
+.btn-nb-sm:active {
+  transform: translate(0, 0);
+  box-shadow: 0 0 0 0 var(--color-swap-text);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-nb,
+  .btn-nb-sm {
+    transition: none !important;
+    transform: none !important;
+  }
+  .btn-nb:hover,
+  .btn-nb-sm:hover,
+  .btn-nb:active,
+  .btn-nb-sm:active {
+    transform: none !important;
+  }
+}
+
+/* Neo-brutalist card hover interaction (no movement under prefers-reduced-motion) */
+.card-nb-hover {
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.card-nb-hover:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 8px 8px 0 0 var(--color-swap-text);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card-nb-hover {
+    transition: none !important;
+    transform: none !important;
+  }
+  .card-nb-hover:hover {
+    transform: none !important;
+  }
+}
+
+/* Custom soft shadow utilities conforming to design principles (no heavy black shadows) */
+.shadow-swap-soft {
+  box-shadow: 0 8px 30px rgba(60, 31, 93, 0.06);
+}
+
+.shadow-swap-card {
+  box-shadow: 0 10px 25px -4px rgba(30, 16, 40, 0.04), 0 4px 10px -2px rgba(60, 31, 93, 0.03);
+}
+
+.shadow-swap-hover {
+  box-shadow: 0 16px 36px -6px rgba(60, 31, 93, 0.12), 0 6px 14px -3px rgba(30, 16, 40, 0.04);
+}
+
+/* Gentle floating animations for problem chat bubbles (CSS only, disabled for prefers-reduced-motion) */
+@keyframes float-gentle-1 {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes float-gentle-2 {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(4px);
+  }
+}
+
+@keyframes float-gentle-3 {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+@keyframes float-gentle-4 {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(5px);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .animate-float-1 {
+    animation: float-gentle-1 4.2s ease-in-out infinite;
+  }
+  .animate-float-2 {
+    animation: float-gentle-2 3.8s ease-in-out infinite 0.3s;
+  }
+  .animate-float-3 {
+    animation: float-gentle-3 4.6s ease-in-out infinite 0.7s;
+  }
+  .animate-float-4 {
+    animation: float-gentle-4 4s ease-in-out infinite 1s;
+  }
+}
+
+/* Slow drifting animations for hero PNG blobs (scale 1.04 baseline, translate 8-14px, rotate under 1.5deg) */
+@keyframes blob-drift-1 {
+  0% {
+    transform: scale(1.04) translate(0px, 0px) rotate(0deg);
+  }
+  100% {
+    transform: scale(1.04) translate(10px, 12px) rotate(1.1deg);
+  }
+}
+
+@keyframes blob-drift-2 {
+  0% {
+    transform: scale(1.04) translate(0px, 0px) rotate(0deg);
+  }
+  100% {
+    transform: scale(1.04) translate(-12px, 10px) rotate(-1.2deg);
+  }
+}
+
+@keyframes blob-drift-3 {
+  0% {
+    transform: scale(1.04) translate(0px, 0px) rotate(0deg);
+  }
+  100% {
+    transform: scale(1.04) translate(12px, -10px) rotate(1deg);
+  }
+}
+
+@keyframes blob-drift-4 {
+  0% {
+    transform: scale(1.04) translate(0px, 0px) rotate(0deg);
+  }
+  100% {
+    transform: scale(1.04) translate(-10px, -8px) rotate(-1.1deg);
+  }
+}
+
+/* Animations and will-change: transform strictly inside prefers-reduced-motion: no-preference */
+@media (prefers-reduced-motion: no-preference) {
+  .blob-animated {
+    will-change: transform;
+  }
+  .animate-blob-drift-1 {
+    animation-name: blob-drift-1;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+  }
+  .animate-blob-drift-2 {
+    animation-name: blob-drift-2;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+  }
+  .animate-blob-drift-3 {
+    animation-name: blob-drift-3;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+  }
+  .animate-blob-drift-4 {
+    animation-name: blob-drift-4;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+  }
+}
+
+/* Pause animation when hero is off-screen */
+.paused-blobs .blob-animated {
+  animation-play-state: paused !important;
+}
+
+/* Disable completely under prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  .blob-animated,
+  .animate-blob-drift-1,
+  .animate-blob-drift-2,
+  .animate-blob-drift-3,
+  .animate-blob-drift-4 {
+    animation: none !important;
+    transform: scale(1.04) !important;
+    will-change: auto !important;
+  }
+}
+
+/* Grid texture utilities (40px square grid lines, 1px) */
+.bg-grid {
+  background-size: 40px 40px;
+  background-image:
+    linear-gradient(to right, color-mix(in srgb, var(--color-swap-text) 10%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in srgb, var(--color-swap-text) 10%, transparent) 1px, transparent 1px);
+}
+
+.bg-grid-light {
+  background-size: 40px 40px;
+  background-image:
+    linear-gradient(to right, color-mix(in srgb, var(--color-swap-pink) 16%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in srgb, var(--color-swap-pink) 16%, transparent) 1px, transparent 1px);
+}
